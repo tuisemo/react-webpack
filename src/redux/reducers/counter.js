@@ -1,7 +1,7 @@
 // actionType
-const INCREMENT = "INCREMENT";
-const INCREMENT_PARAMS = "INCREMENT_PARAMS";
-const DECREMENT = "DECREMENT";
+const INCREMENT = 'INCREMENT';
+const INCREMENT_PARAMS = 'INCREMENT_PARAMS';
+const DECREMENT = 'DECREMENT';
 // Action Creators
 export function increment(item) {
   return {

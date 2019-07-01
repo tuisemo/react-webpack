@@ -5,18 +5,26 @@
 /**
  * action type
  */
-const PUSH_LIST = "PUSH_LIST";
-const EMPTY_LIST = "EMPTY_LIST";
+const PUSH_LIST = 'PUSH_LIST';
+const PUSH_ITEM = 'PUSH_ITEM';
+const EMPTY_LIST = 'EMPTY_LIST';
 
 // Action Creators
 /**
  * Action创建函数
  */
 
-export function pushList(item) {
+export function pushList(payload) {
   return {
     type: PUSH_LIST,
-    item
+    payload
+  };
+}
+
+export function pushItem(payload) {
+  return {
+    type: PUSH_ITEM,
+    payload
   };
 }
 
@@ -28,7 +36,7 @@ export function emptyList() {
 
 // Initial State
 const initialState = {
-  list: [{ item: "test", done: false }]
+  list: []
 };
 // Reducer
 
@@ -37,7 +45,12 @@ export default function todos(state = initialState, action) {
     case PUSH_LIST:
       return {
         ...state,
-        list: [...state.list, action.item]
+        list: action.payload
+      };
+    case PUSH_ITEM:
+      return {
+        ...state,
+        list: [...state.list, action.payload]
       };
     case EMPTY_LIST:
       return { ...state, list: [] };

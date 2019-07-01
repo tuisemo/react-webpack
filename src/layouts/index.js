@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
-import { Layout, Menu } from "antd";
-import styles from "./index.less";
+import React, { PureComponent } from 'react';
+import { Layout, Menu } from 'antd';
+import styles from './index.less';
 
 const { Header, Content, Footer } = Layout;
 class EnterLayout extends PureComponent {
@@ -10,7 +10,7 @@ class EnterLayout extends PureComponent {
 
   render() {
     const { children } = this.props;
-    return <div className={styles["rootContainer"]}>{children}</div>;
+    return <div className={styles['rootContainer']}>{children}</div>;
   }
 }
 

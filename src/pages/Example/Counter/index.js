@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
-import { connect } from "react-redux";
-import { Row, Col, Button, Form, Input } from "antd";
-import styles from "./index.less";
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { Row, Col, Button, Form, Input } from 'antd';
+import styles from './index.less';
 
 const mapStateToProps = state => state;
 
@@ -12,30 +12,40 @@ class Page extends PureComponent {
   // 同步增加
   add = () => {
     const { dispatch } = this.props;
-    dispatch({ type: "INCREMENT" });
+    dispatch({ type: 'INCREMENT' });
   };
-  add_params = async () => {
+  // 同步增加携带入参
+  addParams = async () => {
     const {
       form: { getFieldsValue },
       dispatch
     } = this.props;
     const { addParams } = await getFieldsValue();
-    dispatch({ type: "INCREMENT_PARAMS", payload: +addParams });
+    dispatch({ type: 'INCREMENT_PARAMS', payload: +addParams });
+  };
+  // 异步增加携带入参
+  addAsyncParams = async () => {
+    const {
+      form: { getFieldsValue },
+      dispatch
+    } = this.props;
+    const { addParamsAsync } = await getFieldsValue();
+    dispatch({ type: 'INCREMENT_ASYNC_PARAMS', payload: +addParamsAsync });
   };
   // 异步增加
   addAsync = () => {
     const { dispatch } = this.props;
-    dispatch({ type: "INCREMENT_ASYNC" });
+    dispatch({ type: 'INCREMENT_ASYNC' });
   };
   // 同步减少
   derc = () => {
     const { dispatch } = this.props;
-    dispatch({ type: "DECREMENT" });
+    dispatch({ type: 'DECREMENT' });
   };
   // 异步减少
   decAsync = () => {
     const { dispatch } = this.props;
-    dispatch({ type: "DECREMENT_ASYNC" });
+    dispatch({ type: 'DECREMENT_ASYNC' });
   };
   render() {
     const {
@@ -70,14 +80,28 @@ class Page extends PureComponent {
               </Button>
             </Form.Item>
             <Form.Item>
-              {getFieldDecorator("addParams", {
+              {getFieldDecorator('addParams', {
                 initialValue: 0
               })(
                 <Input
                   className="append-no-padding"
                   addonAfter={
-                    <Button type="primary" onClick={this.add_params}>
-                      add_params
+                    <Button type="primary" onClick={this.addParams}>
+                      addParams
+                    </Button>
+                  }
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator('addParamsAsync', {
+                initialValue: 0
+              })(
+                <Input
+                  className="append-no-padding"
+                  addonAfter={
+                    <Button type="primary" onClick={this.addAsyncParams}>
+                      addAsyncParams
                     </Button>
                   }
                 />

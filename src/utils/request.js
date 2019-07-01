@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const request = axios.create({
   baseURL: process.env.BASE_API, // api的base_url
@@ -22,7 +22,7 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   response => response.data,
   error => {
-    console.log("err" + error); // for debug
+    console.log('err' + error); // for debug
     return Promise.reject(error);
   }
 );

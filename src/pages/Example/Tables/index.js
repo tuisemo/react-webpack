@@ -1,7 +1,8 @@
-import React, { PureComponent, Fragment } from "react";
-import { connect } from "react-redux";
-import { Form, Button, Input, Table } from "antd";
-import { getEmployees } from "@/api/demo";
+import React, { PureComponent, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Form, Button, Input, Table } from 'antd';
+import { getEmployees } from '@/api/demo';
 
 const mapStateToProps = state => state;
 
@@ -29,38 +30,36 @@ class Tables extends PureComponent {
     const { dataList = [] } = this.state;
     const columns = [
       {
-        title: "姓名",
-        dataIndex: "name"
+        title: '姓名',
+        dataIndex: 'name'
       },
       {
-        title: "年龄",
-        dataIndex: "age"
+        title: '年龄',
+        dataIndex: 'age'
       },
       {
-        title: "性别",
-        dataIndex: "gender",
+        title: '性别',
+        dataIndex: 'gender',
         render: gender => {
-          return gender ? "男" : "女";
+          return gender ? '男' : '女';
         }
       },
       {
-        title: "电话",
-        dataIndex: "mobile"
+        title: '电话',
+        dataIndex: 'mobile'
       },
       {
-        title: "地址",
-        dataIndex: "address"
+        title: '地址',
+        dataIndex: 'address'
       },
       {
-        title: "操作",
+        title: '操作',
         render: (text, record) => {
           return (
             <Fragment>
+              <Link to={`/example/details/${record.id}`}>详情</Link>
               <Button type="link" size="small">
-                详情
-              </Button>
-              <Button type="link" size="small">
-                详情
+                操作
               </Button>
             </Fragment>
           );
@@ -71,7 +70,7 @@ class Tables extends PureComponent {
       <Fragment>
         <Form layout="inline">
           <Form.Item label="name">
-            {getFieldDecorator("name", {})(<Input></Input>)}
+            {getFieldDecorator('name', {})(<Input></Input>)}
           </Form.Item>
           <Form.Item>
             <Button onClick={this.getDataList}>Search</Button>

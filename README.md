@@ -53,8 +53,8 @@ npm run build
 ```javascript
 plugins: [
   new HtmlWebpackPlugin({
-    filename: "index.html",
-    template: path.resolve("./public/index.html")
+    filename: 'index.html',
+    template: path.resolve('./public/index.html')
   })
 ];
 ```
@@ -124,11 +124,11 @@ _options limit 8192 意思是，小于等于 8K 的图片会被转成 base64 编
 > 按路由或按组件区分，动态加载，有助于切割代码
 
 ```javascript
-import Loadable from "react-loadable";
-import Loading from "./my-loading-component";
+import Loadable from 'react-loadable';
+import Loading from './my-loading-component';
 
 const LoadableComponent = Loadable({
-  loader: () => import("./my-component"),
+  loader: () => import('./my-component'),
   loading: Loading
 });
 
@@ -150,7 +150,7 @@ const LoadableComponent = Loadable({
     proxy: {
       // 配置服务代理
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'http://localhost:3000',
         pathRewrite: { '^/api': '' }, //可转换
         changeOrigin: true
       }
