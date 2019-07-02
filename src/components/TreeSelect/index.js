@@ -13,6 +13,7 @@ class TreeSelect extends PureComponent {
     let { checked = [] } = this.state;
     arr.forEach(item => {
       const index = checked.indexOf(item.value);
+      console.log('TCL: TreeSelect -> checked', checked);
       if (index > -1) {
         //   已存在
         checked = checked.filter(el => {

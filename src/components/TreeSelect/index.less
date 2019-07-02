@@ -1,12 +1,31 @@
-:global{
-    .treeNode{
-        line-height: 2;
-        .control{
-            padding-left: 15px;
-        }
-        .childrenContainer{
-            padding-left: 15px;
-        }
+:global {
+  .treeNode {
+    line-height: 2;
+    .control {
+      position: relative;
+      display: flex;
+      align-items: center;
     }
-
+    .controlBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+      i {
+        width: 10px;
+        height: 10px;
+      }
+      svg {
+        transition: transform 0.3s ease-in-out;
+      }
+      &.expanded {
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
 }
