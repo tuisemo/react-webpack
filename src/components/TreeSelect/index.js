@@ -9,28 +9,28 @@ class TreeSelect extends PureComponent {
       checked: value
     };
   }
-  diff = arr => {
+  diff = (arr, selectAll) => {
     let { checked = [] } = this.state;
-    arr.forEach(item => {
-      const index = checked.indexOf(item.value);
-      console.log('TCL: TreeSelect -> checked', checked);
-      if (index > -1) {
-        //   已存在
-        checked = checked.filter(el => {
-          return el !== item.value;
+    let newArray = checked;
+    if (selectAll) {
+      // 全选
+      newArray = [...new Set([...checked, ...arr])];
+    } else {
+      // 取消全选
+      arr.forEach(el => {
+        newArray = newArray.filter(item => {
+          return el != item;
         });
-      } else {
-        //   不存在
-        checked.push(item.value);
-      }
-    });
-    this.setState({ checked });
-    this.triggerChange(checked);
+      });
+    }
+
+    this.setState({ checked: newArray });
+    this.triggerChange(newArray);
   };
-  emit = data => {
+  emit = (data, selectAll) => {
     //   判断是否'全选'=>入参为数组
     if (data instanceof Array) {
-      this.diff(data);
+      this.diff(data, selectAll);
       return;
     }
     const { checked } = this.state;
