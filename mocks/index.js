@@ -42,3 +42,21 @@ Mock.mock('/mock/products/list', 'get', {
     }
   ]
 });
+
+Mock.mock('/mock/tree/list', 'get', {
+  'data|0-20': [
+    {
+      id: '@id',
+      name: '@id',
+      value: '@id'
+      // 'children|0-9': [
+      //   {
+      //     id: '@id',
+      //     name: '@id',
+      //     value: '@id',
+      //     children: []
+      //   }
+      // ]
+    }
+  ]
+});

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Button, Form, Input } from 'antd';
 import styles from './index.less';
 import TreeSelect from '@/components/TreeSelect';
+import * as api from '@/api/demo';
 
 const mapStateToProps = state => state;
 
@@ -10,79 +11,7 @@ class Page extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      treeData: [
-        {
-          name: '001',
-          value: '001',
-          children: [
-            {
-              name: '010',
-              value: '010',
-              children: [
-                {
-                  name: '100',
-                  value: '100',
-                  children: []
-                },
-                {
-                  name: '101',
-                  value: '101',
-                  children: []
-                },
-                {
-                  name: '102',
-                  value: '102',
-                  children: []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          name: '002',
-          value: '002',
-          children: [
-            {
-              name: '020',
-              value: '020',
-              children: [
-                {
-                  name: '200',
-                  value: '200',
-                  children: []
-                }
-              ]
-            },
-            {
-              name: '021',
-              value: '021',
-              children: [
-                {
-                  name: '201',
-                  value: '201',
-                  children: [
-                    {
-                      name: '300',
-                      value: '300'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              name: '022',
-              value: '022',
-              children: [
-                {
-                  name: '202',
-                  value: '202',
-                  children: []
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      treeData: []
     };
   }
   // 同步增加
@@ -130,6 +59,18 @@ class Page extends PureComponent {
     const res = getFieldsValue();
     console.log('res: ', res);
   };
+  loadMoreTreeNode = () => {
+    api.getTreeList().then(res => {
+      console.log('TCL: TreeItem -> loadMoreTreeNode -> res', res);
+      const { data = [] } = res;
+      this.setState({
+        treeData: data
+      });
+    });
+  };
+  componentDidMount() {
+    this.loadMoreTreeNode();
+  }
   render() {
     const {
       form: { getFieldDecorator },

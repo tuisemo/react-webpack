@@ -28,3 +28,10 @@ export function getEmployeeDetails(data) {
     params: data
   });
 }
+export function getTreeList(data) {
+  return request({
+    url: '/mock/tree/list',
+    method: 'get',
+    params: data
+  });
+}
