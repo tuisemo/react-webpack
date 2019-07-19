@@ -6,6 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.prod.js",
+    "build:development": "cross-env ENV=development webpack --config ./build/webpack.prod.js",
+    "build:test": "cross-env ENV=test webpack --config ./build/webpack.prod.js",
+    "build:prepoduct": "cross-env ENV=prepoduct webpack --config ./build/webpack.prod.js",
+    "build:product": "cross-env ENV=product webpack --config ./build/webpack.prod.js",
     "build:speed": "webpack --config ./build/webpack.speed.js",
     "dll": "webpack --config ./build/webpack.dll.js --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -33,6 +37,7 @@
     "html-webpack-include-assets-plugin": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^2.4.1",
+    "jest": "^24.8.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "lint-staged": "^8.2.1",

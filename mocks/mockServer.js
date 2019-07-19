@@ -11,6 +11,14 @@ app.get('/api/employee/details', function(req, res, next) {
     data: employeeDetails
   });
 });
+// 系统鉴权
+app.get('/api/auth/check', function(req, res, next) {
+  res.json({
+    code: 200,
+    msg: '鉴权',
+    data: true
+  });
+});
 
 var server = app.listen(3000, function() {
   var host = server.address().address;
