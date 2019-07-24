@@ -10,12 +10,17 @@ class Tables extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       dataList: []
     };
   }
   getDataList = async () => {
+    this.setState({
+      loading: true
+    });
     const res = await getEmployees();
     this.setState({
+      loading: false,
       dataList: res.data
     });
   };
@@ -27,7 +32,7 @@ class Tables extends PureComponent {
     const {
       form: { getFieldDecorator }
     } = this.props;
-    const { dataList = [] } = this.state;
+    const { dataList = [], loading } = this.state;
     const columns = [
       {
         title: '姓名',
@@ -81,6 +86,7 @@ class Tables extends PureComponent {
           rowKey={record => record.id}
           columns={columns}
           dataSource={dataList}
+          loading={loading}
         ></Table>
       </Fragment>
     );

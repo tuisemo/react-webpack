@@ -4,21 +4,14 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable'; // 按路由拆分代码
 import Loading from '@/components/Loading'; // Loading组件
 
-// import PrivateRoute from '@/components/PrivateRoute'; // 权限路由组件
-import HocPrivateRoute from '@/components/PrivateRoute/HocPrivateRoute'; // 权限路由-高阶封装
-const PrivateRoute = HocPrivateRoute(Route);
+import PrivateRoute from '@/components/PrivateRoute'; // 权限路由组件
+import PrimaryLayout from '@/layouts/PrimaryLayout'; // 布局组件
+// import HocPrivateRoute from '@/components/PrivateRoute/HocPrivateRoute'; // 权限路由-高阶封装
+// const PrivateRoute = HocPrivateRoute(Route);
 
 // 异步引入页面
-const Home = Loadable({
-  loader: () => import('pages/Example/App'),
-  loading: Loading
-});
 const Login = Loadable({
-  loader: () => import('pages/Login'),
-  loading: Loading
-});
-const Example = Loadable({
-  loader: () => import('pages/Example/index'),
+  loader: () => import('pages/Login/App'),
   loading: Loading
 });
 const Counter = Loadable({
@@ -48,11 +41,11 @@ const PageNotFound = Loadable({
 // 路由
 const getRouter = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
     <Route exact path="/login" component={Login} />
-    <Example path="/example">
+    <PrimaryLayout>
       <Switch>
-        <PrivateRoute
+        <PrivateRoute exact path="/" component={Counter} />
+        <Route
           exact
           path="/example"
           render={() => <Redirect to="/example/counter"></Redirect>}
@@ -63,7 +56,7 @@ const getRouter = () => (
         <PrivateRoute path="/example/details/:id" component={Details} />
         <Route component={PageNotFound} />
       </Switch>
-    </Example>
+    </PrimaryLayout>
     <Route component={PageNotFound} />
   </Switch>
 );

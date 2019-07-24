@@ -1,7 +1,7 @@
-const merge = require("webpack-merge");
-const common = require("./webpack.common.js");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 
 const extPlugins = [];
@@ -12,7 +12,7 @@ if (process.env.npm_config_report) {
   extPlugins.push(new BundleAnalyzerPlugin());
 }
 module.exports = merge(common, {
-  mode: "production",
+  mode: 'production',
   performance: {
     hints: false
   },

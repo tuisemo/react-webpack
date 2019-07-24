@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button, Form, Input } from 'antd';
-import styles from './index.less';
-import TreeSelect from '@/components/TreeSelect';
-import * as api from '@/api/demo';
 
 const mapStateToProps = state => state;
 
@@ -52,37 +49,15 @@ class Page extends PureComponent {
     const { dispatch } = this.props;
     dispatch({ type: 'DECREMENT_ASYNC' });
   };
-  log = () => {
-    const {
-      form: { getFieldsValue }
-    } = this.props;
-    const res = getFieldsValue();
-    console.log('res: ', res);
-  };
-  loadMoreTreeNode = () => {
-    api.getTreeList().then(res => {
-      console.log('TCL: TreeItem -> loadMoreTreeNode -> res', res);
-      const { data = [] } = res;
-      this.setState({
-        treeData: data
-      });
-    });
-  };
-  componentDidMount() {
-    this.loadMoreTreeNode();
-  }
   render() {
     const {
       form: { getFieldDecorator },
       counter
     } = this.props;
-    const { treeData } = this.state;
     return (
       <Row>
         <Col span={8}>
-          current Num: <span>{counter}</span>
-          <br />
-          {/* <TreeSelect treeData={treeData}></TreeSelect> */}
+          <span style={{ fontSize: '30px' }}>current Num: {counter}</span>
         </Col>
         <Col span={16}>
           <Form layout="inline">
@@ -133,17 +108,6 @@ class Page extends PureComponent {
                   }
                 />
               )}
-            </Form.Item>
-            <br />
-            <Form.Item>
-              {getFieldDecorator('ssss', {
-                initialValue: ['100']
-              })(<TreeSelect treeData={treeData}></TreeSelect>)}
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" onClick={this.log}>
-                log
-              </Button>
             </Form.Item>
           </Form>
         </Col>

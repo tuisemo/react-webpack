@@ -9,10 +9,11 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve('./dist'),
     compress: true, // gzip压缩
-    host: '0.0.0.0', // 允许ip访问
+    host: 'localhost', // 允许ip访问
     hot: true, // 热更新
     historyApiFallback: true, // 解决启动后刷新404
-    port: 8000, // 端口
+    port: 8080, // 端口
+    open: true,
     proxy: {
       // 配置服务代理
       '/api': {

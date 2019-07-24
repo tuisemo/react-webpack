@@ -6,3 +6,16 @@ export function checkAuth(data) {
     method: 'get'
   });
 }
+export function loginRequest(data) {
+  return request({
+    url: '/api/post/login',
+    method: 'post',
+    data
+  });
+}
+export function logoutRequest(data) {
+  return request({
+    url: '/api/get/logout',
+    method: 'get'
+  });
+}

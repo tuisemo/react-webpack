@@ -5,20 +5,17 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 class PrivateRoute extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      auth: false
-    };
   }
-  componentWillMount() {}
   render() {
     let {
       component: Component,
       path = '/',
       exact = false,
-      strict = false
+      strict = false,
+      auth: { authState }
     } = this.props;
-    const { auth } = this.state;
-    return auth ? (
+    console.log('authState: ', authState);
+    return authState ? (
       <Route
         path={path}
         exact={exact}
@@ -27,8 +24,9 @@ class PrivateRoute extends React.Component {
       />
     ) : (
       // '请登录'
-      <Redirect to="/404"></Redirect>
+      <Redirect to="/login"></Redirect>
     );
   }
 }
-export default withRouter(connect()(PrivateRoute));
+const mapStateToProps = state => state;
+export default withRouter(connect(mapStateToProps)(PrivateRoute));

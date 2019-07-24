@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Input, Button, Icon } from 'antd';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Form, Input, Button, Icon, message } from 'antd';
+import { checkAuth, loginRequest } from '@/api/user';
 import styles from './index.less';
 
 class Login extends PureComponent {
@@ -11,7 +13,29 @@ class Login extends PureComponent {
       identifyCodePath: ''
     };
   }
-
+  handlerLogin = () => {
+    const {
+      form: { validateFields },
+      history,
+      dispatch
+    } = this.props;
+    console.log('history: ', history);
+    validateFields((err, val) => {
+      if (err) return false;
+      const { name, password } = val;
+      loginRequest({
+        name,
+        password
+      }).then(res => {
+        if (res.data) {
+          dispatch({ type: 'UPDATE_AUTH', payload: true });
+          history.push('/');
+        } else {
+          message.error(res.msg);
+        }
+      });
+    });
+  };
   render() {
     const { identifyCodeNeed, identifyCodePath } = this.state;
     const {
@@ -20,27 +44,31 @@ class Login extends PureComponent {
     return (
       <div className={styles['login-container']}>
         <Form className={styles['login-form']}>
-          <Form.Item className={styles['login-title']}>登录</Form.Item>
+          <Form.Item className={styles['login-title']}>Admin Manage</Form.Item>
           <Form.Item>
-            {getFieldDecorator('loginName', {
+            {getFieldDecorator('name', {
+              initialValue: 'admin',
               rules: [{ required: true, message: '用户名' }]
             })(
               <Input
                 prefix={
                   <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
+                allowClear
                 placeholder="用户名"
               />
             )}
           </Form.Item>
           <Form.Item>
             {getFieldDecorator('password', {
+              initialValue: '123456',
               rules: [{ required: true, message: '请输入密码' }]
             })(
               <Input.Password
                 prefix={
                   <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
+                allowClear
                 type="password"
                 placeholder="请输入密码"
               />
@@ -71,13 +99,7 @@ class Login extends PureComponent {
           ) : null}
 
           <Form.Item>
-            <Link to={`/Register`} className={styles['link_left']}>
-              立即注册
-            </Link>
-            <Link to={`/ResetPassword`} className={styles['link_right']}>
-              忘记密码？
-            </Link>
-            <Button block type="primary">
+            <Button block type="primary" onClick={this.handlerLogin}>
               登录
             </Button>
           </Form.Item>
@@ -86,4 +108,5 @@ class Login extends PureComponent {
     );
   }
 }
-export default Form.create()(Login);
+const mapStateToProps = state => state;
+export default withRouter(Form.create({})(connect(mapStateToProps)(Login)));

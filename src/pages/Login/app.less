@@ -1,0 +1,101 @@
+// 应用入口页样式
+.App {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #0d1823;
+}
+.App-wrap {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+// 太极
+
+.taiji {
+  margin: 0 auto;
+  height: 400px;
+  width: 400px;
+  animation: run-inner infinite 8s linear;
+}
+@keyframes run-inner {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-90deg);
+  }
+  50% {
+    transform: rotate(-180deg);
+  }
+  75% {
+    transform: rotate(-270deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.yang {
+  width: 400px;
+  height: 200px;
+  border-bottom: 0px;
+  border-radius: 200px 200px 0 0;
+  background: #fff;
+  position: relative;
+  &:after {
+    content: '';
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 285px;
+  }
+  .inner {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    border-radius: 100px 100px 0 0;
+  }
+}
+.yin {
+  width: 400px;
+  height: 200px;
+  border-top: 0px;
+  border-radius: 0 0 200px 200px;
+  background: #000;
+  position: relative;
+  &:after {
+    content: '';
+    background: #000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top:0;
+    right: 285px;
+  }
+  .inner {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 0 0 100px 100px;
+  }
+}
