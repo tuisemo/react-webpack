@@ -25,7 +25,6 @@ class EnterLayout extends PureComponent {
     const { loadingState } = this.state;
     return (
       <div className={styles['rootContainer']}>
-        {children}
         {loadingState ? children : <Loading></Loading>}
       </div>
     );
