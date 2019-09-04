@@ -1,24 +1,39 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
 import LoginPage from './index';
 import styles from './app.less';
 
-class Example extends PureComponent {
+class Login extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    const {
+      auth: { authState }
+    } = this.props;
     return (
-      <div className={styles['App']}>
-        <div className={styles['App-wrap']}>
-          <div className={styles['taiji']}>
-            <div className={styles['yang']}>
-              <div className={styles['inner']}></div>
+      <Fragment>
+        {authState ? (
+          <Redirect to="/"></Redirect>
+        ) : (
+          <div className={styles['App']}>
+            <div className={styles['App-wrap']}>
+              <div className={styles['taiji']}>
+                <div className={styles['yang']}>
+                  <div className={styles['inner']}></div>
+                </div>
+                <div className={styles['yin']}>
+                  <div className={styles['inner']}></div>
+                </div>
+              </div>
             </div>
-            <div className={styles['yin']}>
-              <div className={styles['inner']}></div>
-            </div>
+            <LoginPage></LoginPage>
           </div>
-        </div>
-        <LoginPage></LoginPage>
-      </div>
+        )}
+      </Fragment>
     );
   }
 }
-export default Example;
+const mapStateToProps = state => state;
+export default withRouter(connect(mapStateToProps)(Login));

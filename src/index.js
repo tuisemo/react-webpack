@@ -15,9 +15,9 @@ if (process.env.NODE_ENV === 'development') {
 
 ReactDom.render(
   <Provider store={store}>
-    <EnterLayouts>
-      <Router>{getRouter()}</Router>
-    </EnterLayouts>
+    <Router>
+      <EnterLayouts>{getRouter()}</EnterLayouts>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );

@@ -37,6 +37,12 @@ export default () => {
             <span className="nav-text">Tables</span>
           </Link>
         </Menu.Item>
+        <Menu.Item key="4">
+          <Link to="/example/reactHooks" className="nav-text">
+            <Icon type="reactHooks" />
+            <span className="nav-text">reactHooks</span>
+          </Link>
+        </Menu.Item>
       </Menu>
     </Sider>
   );

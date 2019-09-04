@@ -14,7 +14,6 @@ class PrivateRoute extends React.Component {
       strict = false,
       auth: { authState }
     } = this.props;
-    console.log('authState: ', authState);
     return authState ? (
       <Route
         path={path}

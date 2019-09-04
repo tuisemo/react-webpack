@@ -10,14 +10,15 @@ export function updateAuth(state) {
 
 // Initial State
 const initialState = {
+  loadingState: false,
   authState: false
 };
 
 // Reducer
-export default function counter(state = initialState, action) {
+export default function Reducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_AUTH:
-      return { ...state, authState: action.payload };
+      return { ...state, loadingState: true, authState: action.payload };
     default:
       return state;
   }
