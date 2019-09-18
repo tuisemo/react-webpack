@@ -19,6 +19,12 @@ npm install
 npm run start
 ```
 
+开发&本地后台服务模式
+
+```
+npm run start:server
+```
+
 打包
 
 ```
