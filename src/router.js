@@ -30,6 +30,10 @@ const ReactHooks = Loadable({
   loader: () => import('pages/Example/reactHooks/index'),
   loading: Loading
 });
+const example1 = Loadable({
+  loader: () => import('pages/Example/example_1/index'),
+  loading: Loading
+});
 const PageNotFound = Loadable({
   loader: () => import('pages/404'),
   loading: Loading
@@ -53,6 +57,14 @@ const getRouter = () => (
     <PrivateRoute path="/example/tables" component={Tables} />
     <PrivateRoute path="/example/details/:id" component={Details} />
     <PrivateRoute path="/example/reactHooks" component={ReactHooks} />
+    <PrivateRoute path="/example/example1" component={example1} />
+    <PrivateRoute
+      path="/example/example2"
+      component={Loadable({
+        loader: () => import('pages/Example/example_2/index'),
+        loading: Loading
+      })}
+    />
     <Route component={PageNotFound} />
     <Route component={PageNotFound} />
   </Switch>
