@@ -1,25 +1,28 @@
 const babelConfig = {
   presets: [
-    "@babel/preset-react",
+    '@babel/preset-react',
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
-        modules: false,
-        useBuiltIns: "usage"
+        // modules: false,
+        // useBuiltIns: "usage",
+        targets: {
+          node: 'current'
+        }
       }
     ]
   ],
   plugins: [
     [
-      "import",
+      'import',
       {
-        libraryName: "antd",
-        libraryDirectory: "es",
-        style: "css" // `style: true` 会加载 less 文件
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: 'css' // `style: true` 会加载 less 文件
       }
     ],
     [
-      "@babel/plugin-transform-runtime",
+      '@babel/plugin-transform-runtime',
       {
         corejs: false,
         helpers: true, // 默认，可以不写
@@ -27,9 +30,9 @@ const babelConfig = {
         useESModules: true
       }
     ],
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-transform-arrow-functions",
-    "@babel/plugin-proposal-class-properties"
+    '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-transform-arrow-functions',
+    '@babel/plugin-proposal-class-properties'
   ]
 };
 
