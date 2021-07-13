@@ -72,6 +72,13 @@ const getRouter = () => (
         loading: Loading
       })}
     />
+    <PrivateRoute
+      path="/example/example4"
+      component={Loadable({
+        loader: () => import('pages/Example/example_4/index'),
+        loading: Loading
+      })}
+    />
     <Route component={PageNotFound} />
     <Route component={PageNotFound} />
   </Switch>

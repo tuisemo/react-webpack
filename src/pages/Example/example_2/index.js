@@ -34,3 +34,7 @@ export default function App() {
     </div>
   );
 }
+/**
+ * useCallback用于缓存函数执行
+ * useMemo用于缓存值（与该值依赖的组件，在值没有发生变化的时候，可以避免无用的render渲染）
+ */
