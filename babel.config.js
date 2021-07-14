@@ -30,6 +30,12 @@ const babelConfig = {
         useESModules: true
       }
     ],
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true
+      }
+    ],
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-transform-arrow-functions',
     '@babel/plugin-proposal-class-properties'

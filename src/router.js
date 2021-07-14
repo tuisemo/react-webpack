@@ -79,6 +79,13 @@ const getRouter = () => (
         loading: Loading
       })}
     />
+    <PrivateRoute
+      path="/example/ES6"
+      component={Loadable({
+        loader: () => import('pages/Example/ES6/index'),
+        loading: Loading
+      })}
+    />
     <Route component={PageNotFound} />
     <Route component={PageNotFound} />
   </Switch>
