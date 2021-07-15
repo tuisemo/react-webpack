@@ -1,20 +1,62 @@
 import React from 'react';
-import { Hero, addPower, addATK, addSpeed } from './utils/Decorator';
+import { Hero, addPower, addAttrs, addPowerForIns } from './utils/Decorator';
 
+/**
+ * 创建一个初始力量值为5的英雄模板（类）
+ */
 @addPower
-class PowerHero {
-  constructor() {
-    console.log('🚀 ~ file: Decorator_demo.js ~ line 6 ~ PowerHero', this);
+class PowerHero {}
+console.log('🚀PowerHero.power', PowerHero.power);
 
-    this.power = 0;
-    this.speed = 0;
-  }
+/**
+ * 创建一个综合的英雄类，需要传入多个属性
+ */
+@addAttrs(5, 10)
+class ComHero {}
+console.table([
+  { attribute: 'power', val: ComHero.power },
+  { attribute: 'speed', val: ComHero.speed }
+]);
+
+/**
+ * 创建一个速度为5的英雄
+ */
+@addPowerForIns
+class SpeedHero {
+  constructor() {}
 }
-// PowerHero.power
-console.log(
-  '🚀 ~ file: Decorator_demo.js ~ line 8 ~ PowerHero.power',
-  PowerHero.power
-);
+/**
+ * 此刻，当使用SpeedHero初始化一个实例时
+ * addPowerForIns就会生效，为实例添加默认属性值
+ */
+const GaiYa = new SpeedHero();
+console.log('🚀GaiYa的初始速度为', GaiYa.speed);
+
+let person = {};
+// 给person添加性别属性（且默认不可改变）
+Object.defineProperty(person, 'sex', {
+  value: 'man'
+});
+// console.log("🚀 ~ person.sex修改前", person.sex)
+// person.sex = 'female'
+// console.log("🚀 ~ person.sex修改后", person.sex)
+
+Object.defineProperty(person, 'name', {
+  value: 'jack',
+  writable: true // 是否可以被改变[默认false]
+});
+person.name = 'jhon';
+console.log('🚀 ~ person.name', person.name);
+/**
+ * [拓展知识]
+ * Object.preventExtensions
+ * 可以禁止一个对象添加新属性并且保留已有属性
+ * 例如:
+ * var person = { name : 'rose' }
+ * Object.preventExtensions(person)
+ * 操作之后，person将不再接受新属性
+ */
+
 const Demo = () => {
   return <div></div>;
 };

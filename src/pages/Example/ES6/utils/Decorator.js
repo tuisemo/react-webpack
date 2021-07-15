@@ -8,35 +8,43 @@ export class Hero {
     this.speed = 0; // 速度默认为0
     this.atk = 0; // 攻击力默认为0
   }
-  addPower = num => {
-    this.power = this.power + num;
-  };
-  addSpeed = num => {
-    this.speed = this.speed + num;
-  };
-  addATK = num => {
-    this.atk = this.atk + num;
-  };
 }
 /**
  * 力量提升装饰器
  * @param {*} target
  */
 export function addPower(target) {
-  console.log('🚀 ~ file: Decorator.js ~ line 17 ~ addPower ~ target', target);
   target.power = 5;
 }
 /**
  * 速度提升装饰器
+ * 为实例添加属性，而不是为类添加属性
  * @param {*} target
  */
-export function addSpeed(target) {
-  target.speed = 5;
+export function addPowerForIns(target) {
+  target.prototype.speed = 5;
 }
 /**
- * 攻击力提升装饰器
+ * 综合属性装饰器
+ * [当我们想要传入多个参数时]
  * @param {*} target
  */
-export function addATK(target) {
-  target.atk = 5;
+export function addAttrs(power, speed) {
+  return function(target) {
+    target.power = power;
+    target.speed = speed;
+  };
 }
+
+/**
+ * Object.defineProperty(obj, prop, descriptor)
+ * @param {*} obj
+ * @param {*} prop
+ * @param {*} descriptor
+ */
+
+/**
+ * [属性装饰器]
+ *
+ */
+export function attrsDecorator(target, key, descriptor) {}
