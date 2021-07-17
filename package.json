@@ -13,7 +13,7 @@
     "build:product": "cross-env ENV=product webpack --config ./build/webpack.prod.js",
     "build:speed": "webpack --config ./build/webpack.speed.js",
     "dll": "webpack --config ./build/webpack.dll.js --mode production",
-    "test": "jest /test/async.test.js",
+    "test": "jest /test/mock.test.js",
     "mock": "node ./mocks/mockServer.js",
     "prettier": "prettier --write \"src/**/*.{js,jsx}\" \"build/*.js\" \"mocks/**/*.js\" "
   },
