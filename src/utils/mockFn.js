@@ -3,8 +3,9 @@
  * @returns
  */
 export function mockPromise() {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
+      console.log('----函数被执行-----');
       resolve(1000);
     }, 2000);
   });

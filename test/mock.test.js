@@ -1,4 +1,5 @@
 import { forEachCall, getNewDataByReq } from '../src/utils/fn';
+jest.mock('../src/utils/mockFn');
 import { mockPromise } from '../src/utils/mockFn';
 
 test('mock函数——具象函数', () => {
@@ -33,6 +34,21 @@ test('mock函数——模拟函数 ', () => {
   console.log(myMock()); // ===> 'CONSTANS'
 });
 
-test('should ', () => {
-  jest.mock(mockPromise);
+test.only('mock一个目标测试函数里涉及的引用函数 ', () => {
+  // mock一个外部依赖（在实际测试中，mock后的函数不会真的执行）
+  // jest.mock('../src/utils/mockFn'); // 这句语句在实际使用中，需要提升至import语句的前面
+  mockPromise.mockImplementation(
+    () =>
+      new Promise(resolve => {
+        resolve(200);
+      })
+  );
+  return getNewDataByReq().then(res => {
+    expect(res).toBe(1300);
+  });
 });
+
+/**
+ * 一个进阶的mock方法：jest.spyOn()
+ * 不同于jest.mock();被jest.spyOn()的函数会真的执行
+ */

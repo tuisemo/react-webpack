@@ -19,7 +19,7 @@ export function forEachCall(items, callback) {
  * @returns
  */
 export function getNewDataByReq() {
-  return mockPromise.then(res => {
+  return mockPromise().then(res => {
     const newData = 100 + res;
     return newData;
   });
