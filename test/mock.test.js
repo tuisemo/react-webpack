@@ -44,7 +44,7 @@ test.only('mock一个目标测试函数里涉及的引用函数 ', () => {
       })
   );
   return getNewDataByReq().then(res => {
-    expect(res).toBe(1300);
+    expect(res).toBe(300);
   });
 });
 
@@ -52,3 +52,11 @@ test.only('mock一个目标测试函数里涉及的引用函数 ', () => {
  * 一个进阶的mock方法：jest.spyOn()
  * 不同于jest.mock();被jest.spyOn()的函数会真的执行
  */
+
+test('必须有几个断言', () => {
+  // 先告诉jest当前的测试用例有几个断言
+  expect.assertions(3);
+  expect(1).toBe(1);
+  expect(2).toBe(2);
+  expect(3).toBe(3);
+});
