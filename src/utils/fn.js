@@ -24,3 +24,14 @@ export function getNewDataByReq() {
     return newData;
   });
 }
+
+/**
+ * 一个与定时器有关的函数
+ */
+export function timerGame(callback) {
+  console.log('ready----go!');
+  setTimeout(() => {
+    console.log('time’s up-----stop!');
+    callback && callback();
+  }, 2000);
+}

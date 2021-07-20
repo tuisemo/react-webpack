@@ -1,6 +1,6 @@
 import { forEachCall, getNewDataByReq } from '../src/utils/fn';
-jest.mock('../src/utils/mockFn');
 import { mockPromise } from '../src/utils/mockFn';
+jest.mock('../src/utils/mockFn');
 
 test('mock函数——具象函数', () => {
   // mock一个具象函数
@@ -36,7 +36,7 @@ test('mock函数——模拟函数 ', () => {
 
 test.only('mock一个目标测试函数里涉及的引用函数 ', () => {
   // mock一个外部依赖（在实际测试中，mock后的函数不会真的执行）
-  // jest.mock('../src/utils/mockFn'); // 这句语句在实际使用中，需要提升至import语句的前面
+  // jest.mock('../src/utils/mockFn'); // 这句语句在实际使用中，需要提升到test外层
   mockPromise.mockImplementation(
     () =>
       new Promise(resolve => {
