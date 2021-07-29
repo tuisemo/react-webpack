@@ -18,7 +18,7 @@ class SpanItem extends React.Component {
   }
 }
 // 高阶函数——返回一个组件
-const FoldHoc = WrapComponent => {
+const FoldHoc = (WrapComponent, num = 5, dataKey = 'list') => {
   return class FoldComp extends React.Component {
     constructor(props) {
       super(props);
@@ -31,9 +31,9 @@ const FoldHoc = WrapComponent => {
     componentDidMount() {
       const { data } = this.props;
       this.setState({
-        data: data.slice(0, 5),
+        data: data.slice(0, num),
         foldState: true,
-        showFoldBtn: data.length > 5
+        showFoldBtn: data.length > num
       });
     }
     showAllData = () => {
@@ -46,15 +46,19 @@ const FoldHoc = WrapComponent => {
     showSomeData = () => {
       const { data } = this.props;
       this.setState({
-        data: data.slice(0, 5),
+        data: data.slice(0, num),
         foldState: true
       });
     };
     render() {
       const { data, showFoldBtn, foldState } = this.state;
+      const props = {
+        ...this.props,
+        [dataKey]: data
+      };
       return (
         <div>
-          <WrapComponent {...this.props} list={data}></WrapComponent>
+          <WrapComponent {...props}></WrapComponent>
           {showFoldBtn && (
             <div>
               {foldState ? (
@@ -70,7 +74,7 @@ const FoldHoc = WrapComponent => {
   };
 };
 // 构造出新组建
-const ListComp = FoldHoc(SpanItem);
+const ListComp = FoldHoc(SpanItem, 3);
 
 export default class MouseTracker extends React.Component {
   constructor(props) {
