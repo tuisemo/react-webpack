@@ -1,10 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import Button from './component/button';
+import Demo from './demo';
+import VirtualList from '@/components/VirtualList';
 
 export default function App() {
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
   const [count3, setCount3] = useState(0);
+  const [obj, setObj] = useState({ a: 1, b: 2 });
+  const [arrays, setArrays] = useState(new Array(200).fill('虚拟数据'));
 
   const handleClickButton1 = () => {
     setCount1(count1 + 1);
@@ -14,8 +18,18 @@ export default function App() {
     setCount2(count2 + 1);
   }, [count2]);
 
+  const handleChange = e => {
+    console.log('🚀 ~ file: index.js ~ line 21 ~ handleChange ~ e', e);
+    obj.b = 4;
+    setObj({ ...obj, b: 4 });
+  };
+  const renderItem = item => {
+    return <p>{item}</p>;
+  };
+
   return (
     <div>
+      <Demo></Demo>
       <div>
         <Button onClickButton={handleClickButton1}>Button1</Button>
       </div>
@@ -30,6 +44,15 @@ export default function App() {
         >
           Button3
         </Button>
+      </div>
+      <button onClick={handleChange}>点击{obj.b}</button>
+      <div
+        style={{
+          height: '400px',
+          overflow: 'auto'
+        }}
+      >
+        <VirtualList data={arrays} renderItem={renderItem}></VirtualList>
       </div>
     </div>
   );

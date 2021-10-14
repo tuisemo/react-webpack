@@ -1,0 +1,136 @@
+.wrap {
+	width: 400px;
+	height: 600px;
+	background: #f4f4f4;
+}
+
+.message-item {
+	display: flex;
+	padding: 10px;
+	.avatar{
+		display: inline-flex;
+		width: 36px;
+		height: 36px;
+		border-radius: 3px;
+		padding-right: 10px;
+		overflow: hidden;
+		box-sizing: content-box;
+		img{
+			width: 100%;
+			height: 100%;
+			border-radius: 2px;
+		}
+	}
+
+	.message-item_sys {
+		display: inline-flex;
+		background: #e9e9e9;
+		color: #aaa;
+		font-size: 12px;
+		margin: 10px auto;
+		padding: 5px 10px;
+		border-radius: 4px;
+	}
+
+	.message-item_image {
+		position: relative;
+		margin: 0;
+		padding: 8px 10px;
+		max-width: 80%;
+		font-size: 14px;
+		line-height: 20px;
+		border-radius: 4px;
+
+		img {
+			display: block;
+			max-width: 100%;
+			min-width: 100px;
+			height: 100px;
+		}
+	}
+
+	.message-item_text {
+		position: relative;
+		margin: 0;
+		padding: 8px 10px;
+		max-width: 80%;
+		font-size: 14px;
+		line-height: 20px;
+		background: #ffffff;
+		border-radius: 4px;
+
+		&::before {
+			content: " ";
+			position: absolute;
+			top: 6px;
+			width: 0;
+			height: 0;
+			border: 4px solid transparent;
+			left: -4px;
+			right: auto;
+			border-left: none;
+			border-right-color: #ffffff;
+		}
+	}
+
+	&.reverse {
+		flex-direction: row-reverse;
+		.avatar{
+			padding-left: 10px;
+			padding-right: 0;
+		}
+
+		.message-item_text {
+			position: relative;
+			margin: 0;
+			padding: 8px 10px;
+			font-size: 14px;
+			line-height: 20px;
+			background: #35d863;
+			border-radius: 4px;
+
+			&::after {
+				content: " ";
+				position: absolute;
+				top: 6px;
+				width: 0;
+				height: 0;
+				border: 4px solid transparent;
+				left: auto;
+				right: -4px;
+				border-right: none;
+				border-left-color: #35d863;
+			}
+		}
+
+	}
+}
+
+.message-contextmenu {
+	z-index: 100;
+	position: absolute;
+	width: 100px;
+
+	.message-contextmenu_item {
+		display: block;
+		text-decoration: none;
+		font-size: 14px;
+		padding: 8px;
+		border-bottom: 1px solid #f1f1f1;
+		text-align: left;
+		background: #fff;
+		cursor: pointer;
+
+		&:active {
+			background: #fbfbfb;
+		}
+
+		&:first-child {
+			border-radius: 2px 2px 0 0;
+		}
+
+		&:last-child {
+			border-radius: 0 0 2px 2px;
+		}
+	}
+}

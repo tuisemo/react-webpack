@@ -80,6 +80,13 @@ const getRouter = () => (
       })}
     />
     <PrivateRoute
+      path="/example/example5"
+      component={Loadable({
+        loader: () => import('pages/Example/example_5/index'),
+        loading: Loading
+      })}
+    />
+    <PrivateRoute
       path="/example/ES6"
       component={Loadable({
         loader: () => import('pages/Example/ES6/index'),
